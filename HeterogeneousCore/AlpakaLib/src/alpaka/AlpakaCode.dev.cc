@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../MyClass.h"
+#include "HeterogeneousCore/AlpakaLib/interface/MyClass.h"
 #include "HeterogeneousCore/AlpakaLib/interface/alpaka/AlpakaLib.h"
 
 namespace ALPAKA_ACCELERATOR_NAMESPACE::AlpakaLib {
