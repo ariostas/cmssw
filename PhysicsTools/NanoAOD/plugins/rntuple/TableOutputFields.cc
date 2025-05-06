@@ -157,7 +157,7 @@ void TableCollection::createFields(const edm::EventForOutput& event, RNTupleMode
   event.getByToken(m_main.getToken(), handle);
   const nanoaod::FlatTable& table = *handle;
   collectionModel->SetDescription(table.doc());
-  m_collection = eventModel.MakeCollection(m_collectionName, std::move(collectionModel));
+  //m_collection = eventModel.MakeCollection(m_collectionName, std::move(collectionModel));
 }
 
 void TableCollection::fill(const edm::EventForOutput& event) {
@@ -177,7 +177,7 @@ void TableCollection::fill(const edm::EventForOutput& event) {
       }
       ext.fillEntry(ext_table, i);
     }
-    m_collection->Fill();
+    //m_collection->Fill();
   }
 }
 
