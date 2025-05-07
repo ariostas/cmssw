@@ -12,6 +12,7 @@ public:
     m_field = model.MakeField<T>(m_name, desc);
   }
   void fill(const T& value) { *m_field = value; }
+  void fill(T&& value) { *m_field = value; }
   const std::string& getFieldName() const { return m_name; }
 
 private:

@@ -59,7 +59,7 @@ public:
 
 private:
   // TODO blocked on RNTuple std::pair support
-  using PSetType = std::pair<edm::ParameterSetID, edm::ParameterSetBlob>;
+  using PSetType = std::pair<edm::ParameterSetID, edm::ParameterSet>;
   RNTupleFieldPtr<PSetType> m_pset;
   void createFields(TFile& file);
   // TODO blocked on RNTuple typedef member field support:

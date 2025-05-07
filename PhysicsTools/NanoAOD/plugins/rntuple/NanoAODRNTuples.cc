@@ -96,8 +96,7 @@ void PSetNTuple::fill(edm::pset::Registry* pset, TFile& file) {
     createFields(file);
   }
   for (const auto& ps : *pset) {
-    auto const pair = std::make_pair(ps.first, ps.second);
-    //m_pset.fill(pair); // FIXME
+    m_pset.fill(std::make_pair(ps.first, ps.second));
     m_ntuple->Fill();
   }
 }
