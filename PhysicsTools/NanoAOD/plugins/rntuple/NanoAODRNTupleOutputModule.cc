@@ -15,10 +15,7 @@
 
 #include <ROOT/RNTuple.hxx>
 #include <ROOT/RNTupleModel.hxx>
-#include <ROOT/RPageStorageFile.hxx>
 using ROOT::RNTupleModel;
-using ROOT::Internal::RPageSinkFile;
-#define MakeRNTupleWriter ROOT::Internal::CreateRNTupleWriter
 #include <ROOT/RNTupleWriteOptions.hxx>
 using ROOT::RNTupleWriteOptions;
 
@@ -203,10 +200,10 @@ void NanoAODRNTupleOutputModule::initializeNTuple(edm::EventForOutput const& iEv
     trigger.createFields(iEvent, *model);
   }
   m_evstrings.createFields(*model);
-  // TODO use Append
+
   RNTupleWriteOptions options;
   options.SetCompression(m_file->GetCompressionSettings());
-  m_ntuple = MakeRNTupleWriter(std::move(model), std::make_unique<RPageSinkFile>("Events", *m_file, options));
+  m_ntuple = RNTupleWriter::Append(std::move(model), "Events", *m_file, options);
 }
 
 void NanoAODRNTupleOutputModule::write(edm::EventForOutput const& iEvent) {
