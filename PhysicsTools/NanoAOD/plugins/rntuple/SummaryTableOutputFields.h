@@ -19,12 +19,15 @@ private:
   template <typename T, typename Col>
   static void fillVectorFields(const std::vector<Col> &tabcols, std::vector<RNTupleFieldPtr<T>> fields);
 
-  std::vector<RNTupleFieldPtr<std::uint64_t>> m_intFields;
-  std::vector<RNTupleFieldPtr<double>> m_floatFields;
-  std::vector<RNTupleFieldPtr<double>> m_floatWithNormFields;
-  std::vector<RNTupleFieldPtr<std::vector<double>>> m_vfloatFields;
-  std::vector<RNTupleFieldPtr<std::vector<double>>> m_vfloatWithNormFields;
-  std::vector<RNTupleFieldPtr<std::vector<std::uint64_t>>> m_vintFields;
+  using int_accumulator = nanoaod::MergeableCounterTable::int_accumulator;
+  using float_accumulator = nanoaod::MergeableCounterTable::float_accumulator;
+
+  std::vector<RNTupleFieldPtr<int_accumulator>> m_intFields;
+  std::vector<RNTupleFieldPtr<float_accumulator>> m_floatFields;
+  std::vector<RNTupleFieldPtr<float_accumulator>> m_floatWithNormFields;
+  std::vector<RNTupleFieldPtr<std::vector<float_accumulator>>> m_vfloatFields;
+  std::vector<RNTupleFieldPtr<std::vector<float_accumulator>>> m_vfloatWithNormFields;
+  std::vector<RNTupleFieldPtr<std::vector<int_accumulator>>> m_vintFields;
 };
 
 #endif
