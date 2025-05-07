@@ -24,7 +24,9 @@ namespace {
           std::cout << "bool,";
           break;
         default:
-          throw cms::Exception("LogicError", "Unsupported type");
+          std::cout << "other,";
+          break;
+          //throw cms::Exception("LogicError", "Unsupported type");
       }
       std::cout << "\n";
     }
@@ -66,7 +68,8 @@ void TableOutputFields::createFields(const edm::EventForOutput& event, RNTupleMo
         m_boolFields.emplace_back(FlatTableField<bool>(table, i, model));
         break;
       default:
-        throw cms::Exception("LogicError", "Unsupported type");
+        std::cout << "Unsupported type in TableOutputFields" << "\n";
+        //throw cms::Exception("LogicError", "Unsupported type");
     }
   }
 }
@@ -109,7 +112,8 @@ void TableOutputVectorFields::createFields(const edm::EventForOutput& event, RNT
         m_vboolFields.emplace_back(FlatTableField<std::vector<bool>>(table, i, model));
         break;
       default:
-        throw cms::Exception("LogicError", "Unsupported type");
+        std::cout << "Unsupported type in TableOutputVectorFields" << "\n";
+        //throw cms::Exception("LogicError", "Unsupported type");
     }
   }
 }

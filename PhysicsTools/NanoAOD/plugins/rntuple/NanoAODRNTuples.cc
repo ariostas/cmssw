@@ -87,7 +87,10 @@ void PSetNTuple::fill(edm::pset::Registry* pset, TFile& file) {
     createFields(file);
   }
   for (const auto& ps : *pset) {
-    m_pset.fill(std::make_pair(ps.first, ps.second));
+    std::string psString;
+    ps.second.toString(psString);
+    edm::ParameterSetBlob psBlob(psString);
+    m_pset.fill(std::make_pair(ps.first, psBlob));
     m_ntuple->Fill();
   }
 }

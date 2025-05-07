@@ -58,17 +58,9 @@ public:
   void finalizeWrite();
 
 private:
-  // TODO blocked on RNTuple std::pair support
-  using PSetType = std::pair<edm::ParameterSetID, edm::ParameterSet>;
+  using PSetType = std::pair<edm::ParameterSetID, edm::ParameterSetBlob>;
   RNTupleFieldPtr<PSetType> m_pset;
   void createFields(TFile& file);
-  // TODO blocked on RNTuple typedef member field support:
-  // https://github.com/root-project/root/issues/7861
-  // RNTupleFieldPtr<edm::ParameterSetID> m_psetId;
-  // RNTupleFieldPtr<edm::ParameterSetBlob> m_psetBlob;
-  //std::shared_ptr<RNTupleCollectionWriter> m_collection;
-  //RNTupleFieldPtr<std::string> m_psetId;
-  //RNTupleFieldPtr<std::string> m_psetBlob;
   std::unique_ptr<RNTupleWriter> m_ntuple;
 };
 
