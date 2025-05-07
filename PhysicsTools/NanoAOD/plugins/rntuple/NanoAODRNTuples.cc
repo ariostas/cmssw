@@ -66,14 +66,9 @@ void RunNTuple::fill(const edm::RunForOutput& iRun, TFile& file) {
 void RunNTuple::finalizeWrite() { m_ntuple.reset(); }
 
 void PSetNTuple::createFields(TFile& file) {
-  // use a collection to emulate std::pair
-  //auto pairModel = RNTupleModel::Create();
-  //m_psetId = RNTupleFieldPtr<std::string>("first", "", *pairModel);
-  //m_psetBlob = RNTupleFieldPtr<std::string>("second", "", *pairModel);
   auto model = RNTupleModel::Create();
   m_pset = RNTupleFieldPtr<PSetType>(edm::poolNames::idToParameterSetBlobsBranchName(), "", *model);
 
-  //m_collection = model->MakeCollection(edm::poolNames::idToParameterSetBlobsBranchName(), std::move(pairModel));
   RNTupleWriteOptions options;
   options.SetCompression(file.GetCompressionSettings());
   m_ntuple = RNTupleWriter::Append(std::move(model), edm::poolNames::parameterSetsTreeName(), file, options);
@@ -97,11 +92,7 @@ void PSetNTuple::fill(edm::pset::Registry* pset, TFile& file) {
 
 void PSetNTuple::finalizeWrite() { m_ntuple.reset(); }
 
-// TODO blocked on RNTuple typedef member field support
 void MetadataNTuple::createFields(TFile& file) {
-  //auto procHistModel = RNTupleModel::Create();
-  // ProcessHistory.transients_.phid_ replacement
-  //m_phId = RNTupleFieldPtr<std::string>("transients_phid_", "", *procHistModel);
   auto model = RNTupleModel::Create();
   m_procHist = RNTupleFieldPtr<edm::ProcessHistory>(edm::poolNames::processHistoryBranchName(), "", *model);
   RNTupleWriteOptions options;

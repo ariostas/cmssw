@@ -13,8 +13,6 @@
 #include "TFile.h"
 #include <ROOT/RNTuple.hxx>
 #include <ROOT/RNTupleWriter.hxx>
-//#include <ROOT/RNTupleCollectionWriter.hxx>
-//using ROOT::Experimental::RNTupleCollectionWriter;
 using ROOT::RNTupleWriter;
 
 #include "EventStringOutputFields.h"
@@ -72,8 +70,6 @@ public:
 
 private:
   void createFields(TFile& file);
-  //std::shared_ptr<RNTupleCollectionWriter> m_procHist;
-
   RNTupleFieldPtr<edm::ProcessHistory> m_procHist;
   std::unique_ptr<RNTupleWriter> m_ntuple;
 };

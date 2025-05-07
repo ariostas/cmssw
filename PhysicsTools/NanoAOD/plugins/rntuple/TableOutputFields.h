@@ -11,8 +11,6 @@
 
 #include <ROOT/RNTuple.hxx>
 #include <ROOT/RNTupleModel.hxx>
-//#include <ROOT/RNTupleCollectionWriter.hxx>
-//using ROOT::Experimental::RNTupleCollectionWriter;
 using ROOT::RNTupleModel;
 using ROOT::RNTupleWriter;
 
