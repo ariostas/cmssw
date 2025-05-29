@@ -15,7 +15,7 @@
 #include "HeterogeneousCore/AlpakaCore/interface/alpaka/stream/SynchronizingEDProducer.h"
 #include "HeterogeneousCore/AlpakaInterface/interface/config.h"
 
-#include "RecoTracker/LSTCore/interface/LSTOutputHostCollection.h"
+#include "RecoTracker/LSTCore/interface/alpaka/TrackCandidatesDeviceCollection.h"
 
 #include "RecoTracker/Record/interface/TrackerRecoGeometryRecord.h"
 
@@ -50,8 +50,8 @@ namespace ALPAKA_ACCELERATOR_NAMESPACE {
 
     void produce(device::Event& event, device::EventSetup const&) override {
       // Output
-      auto lstOutput = lst_.getOutput();
-      event.emplace(lstOutputToken_, std::move(lstOutput));
+      auto lstTrackCandidates = lst_.getTrackCandidates();
+      event.emplace(lstOutputToken_, std::move(*lstTrackCandidates.release()));
     }
 
     static void fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
@@ -72,7 +72,7 @@ namespace ALPAKA_ACCELERATOR_NAMESPACE {
     const double ptCut_;
     const bool nopLSDupClean_;
     const bool tcpLSTriplets_;
-    edm::EDPutTokenT<std::unique_ptr<lst::LSTOutputHostCollection>> lstOutputToken_;
+    edm::EDPutTokenT<lst::TrackCandidatesBaseDeviceCollection> lstOutputToken_;
 
     lst::LST lst_;
   };
